@@ -274,11 +274,16 @@ NSString *DEFAULT_TITLE;
     if(!self.superview){
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
         
+        UIWindow *win = nil;
+        
         for (UIWindow *window in frontToBackWindows)
-            if (window.windowLevel == UIWindowLevelNormal && !window.hidden) {
-                [window addSubview:self];
-                break;
+            if (!window.hidden) {
+                win = win.windowLevel > window.windowLevel ? win : window;
+//                [window addSubview:self];
+//                break;
             }
+        [win addSubview:self];
+        
     }
     
     self.isShowing = YES;
