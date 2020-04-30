@@ -277,7 +277,7 @@ NSString *DEFAULT_TITLE;
         UIWindow *win = nil;
         
         for (UIWindow *window in frontToBackWindows)
-            if (!window.hidden) {
+            if (!window.hidden && [NSStringFromClass(window.superclass) isEqualToString:@"UIWindow"]) {
                 win = win.windowLevel > window.windowLevel ? win : window;
 //                [window addSubview:self];
 //                break;
